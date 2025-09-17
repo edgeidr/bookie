@@ -4,7 +4,7 @@ import { AxiosError, AxiosResponse } from "axios";
 import { SignInInput } from "../auth/inputs/sign-in.input";
 import { User } from "@boldrtechsolutions/types";
 import { SignInWithGoogleInput } from "../auth/inputs/sign-in-with-google.input";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 @Injectable()
 export class BoldrtechApiService {
@@ -37,7 +37,13 @@ export class BoldrtechApiService {
 		return this.request(this.httpService.axiosRef.post("/auth/google", input), response);
 	}
 
-	async getCurrentUser(response: Response): Promise<User> {
-		return this.request(this.httpService.axiosRef.get("/auth/me"), response);
+	async getCurrentUser(request: Request): Promise<User> {
+		return this.request(
+			this.httpService.axiosRef.get("/auth/me", {
+				headers: {
+					cookie: request.headers["cookie"],
+				},
+			}),
+		);
 	}
 }

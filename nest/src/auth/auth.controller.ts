@@ -48,7 +48,7 @@ export class AuthController {
 		console.log("SESSION_ID: ", sessionId);
 		if (!sessionId) return;
 
-		const user = await this.authService.getCurrentUser(response);
+		const user = await this.authService.getCurrentUser(request);
 
 		return { user };
 	}

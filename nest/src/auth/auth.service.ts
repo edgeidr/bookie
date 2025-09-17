@@ -2,7 +2,7 @@ import { Injectable } from "@nestjs/common";
 import { SignInInput } from "./inputs/sign-in.input";
 import { BoldrtechApiService } from "../boldrtech-api/boldrtech-api.service";
 import { SignInWithGoogleInput } from "./inputs/sign-in-with-google.input";
-import { Response } from "express";
+import { Request, Response } from "express";
 
 @Injectable()
 export class AuthService {
@@ -16,7 +16,7 @@ export class AuthService {
 		return this.boldrtechApiService.signInWithGoogle(input, response);
 	}
 
-	async getCurrentUser(response: Response) {
-		return this.boldrtechApiService.getCurrentUser(response);
+	async getCurrentUser(request: Request) {
+		return this.boldrtechApiService.getCurrentUser(request);
 	}
 }
