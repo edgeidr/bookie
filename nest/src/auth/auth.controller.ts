@@ -24,7 +24,7 @@ export class AuthController {
 			staySignedIn: signInDto.staySignedIn,
 		};
 
-		return 123;
+		return this.authService.signIn(payload);
 	}
 
 	@HttpCode(HttpStatus.OK)
