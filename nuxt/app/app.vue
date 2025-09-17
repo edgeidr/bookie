@@ -14,6 +14,7 @@
 	const toast = useToast();
 	const route = useRoute();
 	const user = useLocalStorage<User>("user", null, { serializer: StorageSerializers.object });
+	const isLoggedIn = useCookie("isLoggedIn");
 	const googleSignInForm = ref({
 		credential: "",
 	});
@@ -66,7 +67,7 @@
 		onError: () => console.error("Error with One Tap Login"),
 	});
 
-	if (!user.value) getCurrentUser();
+	if (!isLoggedIn.value) getCurrentUser();
 
 	watch(isOneTapReady, (isReady) => {
 		if (isReady && !user.value) promptGoogleSignIn();
