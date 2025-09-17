@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res } from "@nestjs/common";
+import { Body, Controller, Get, HttpCode, HttpStatus, Post, Req, Res, UnauthorizedException } from "@nestjs/common";
 import { SignInDto } from "./dto/sign-in.dto";
 import { SignInInput } from "./inputs/sign-in.input";
 import { AuthService } from "./auth.service";
@@ -40,13 +40,10 @@ export class AuthController {
 	}
 
 	@Get("me")
-	async getCurrentUser(
-		@Req() request: Request,
-		@Res({ passthrough: true }) response: Response,
-	): Promise<{ user: User } | void> {
+	async getCurrentUser(@Req() request: Request): Promise<{ user: User }> {
 		const sessionId = request.cookies?.["sessionId"] as string | null;
-		console.log("SESSION_ID: ", sessionId);
-		if (!sessionId) return;
+
+		if (!sessionId) throw new UnauthorizedException();
 
 		const user = await this.authService.getCurrentUser(request);
 
