@@ -18,21 +18,8 @@
 		credential: "",
 	});
 
-	if (!user.value) {
-		try {
-			const { data, error } = await useCustomFetch<{ user: User }>("/auth/me", {
-				method: "GET",
-			});
-
-			if (!error.value && data.value) {
-				user.value = data.value.user;
-			}
-		} catch (error) {
-			console.error(error);
-		}
-	}
-
 	const { execute: getCurrentUser } = await useCustomFetch<{ user: User }>("/auth/me", {
+		immediate: false,
 		method: "GET",
 		onResponse: ({ response }) => {
 			if (!response.ok) return;
