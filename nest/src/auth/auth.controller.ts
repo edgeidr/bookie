@@ -45,7 +45,7 @@ export class AuthController {
 		@Res({ passthrough: true }) response: Response,
 	): Promise<{ user: User } | void> {
 		const sessionId = request.cookies?.["sessionId"] as string | null;
-
+		console.log("SESSION_ID: ", sessionId);
 		if (!sessionId) return;
 
 		const user = await this.authService.getCurrentUser(response);
