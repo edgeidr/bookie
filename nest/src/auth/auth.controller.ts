@@ -40,12 +40,15 @@ export class AuthController {
 	}
 
 	@Get("me")
-	async getCurrentUser(@Req() request: Request): Promise<{ user: User } | void> {
+	async getCurrentUser(
+		@Req() request: Request,
+		@Res({ passthrough: true }) response: Response,
+	): Promise<{ user: User } | void> {
 		const sessionId = request.cookies?.["sessionId"] as string | null;
 
 		if (!sessionId) return;
 
-		const user = await this.authService.getCurrentUser();
+		const user = await this.authService.getCurrentUser(response);
 
 		return { user };
 	}

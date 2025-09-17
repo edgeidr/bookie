@@ -16,7 +16,7 @@ export class AuthService {
 		return this.boldrtechApiService.signInWithGoogle(input, response);
 	}
 
-	async getCurrentUser() {
-		return this.boldrtechApiService.getCurrentUser();
+	async getCurrentUser(response: Response) {
+		return this.boldrtechApiService.getCurrentUser(response);
 	}
 }

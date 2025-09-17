@@ -37,7 +37,7 @@ export class BoldrtechApiService {
 		return this.request(this.httpService.axiosRef.post("/auth/google", input), response);
 	}
 
-	async getCurrentUser(): Promise<User> {
-		return this.request(this.httpService.axiosRef.get("/auth/me"));
+	async getCurrentUser(response: Response): Promise<User> {
+		return this.request(this.httpService.axiosRef.get("/auth/me"), response);
 	}
 }
