@@ -24,7 +24,7 @@ export class BoldrtechApiService {
 	}
 
 	async signIn(input: SignInInput): Promise<User> {
-		return this.request(this.httpService.axiosRef.post("/auth/signin", input));
+		return this.request(this.httpService.axiosRef.post("/auth/sign-in", input));
 	}
 
 	async signInWithGoogle(input: SignInWithGoogleInput): Promise<User> {
