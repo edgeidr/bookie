@@ -24,7 +24,7 @@ export class AuthController {
 			staySignedIn: signInDto.staySignedIn,
 		};
 
-		return this.authService.signIn(payload);
+		return this.authService.signIn(payload, response);
 	}
 
 	@HttpCode(HttpStatus.OK)
@@ -36,7 +36,7 @@ export class AuthController {
 			staySignedIn: googleSignInDto.staySignedIn,
 		};
 
-		return this.authService.signInWithGoogle(payload);
+		return this.authService.signInWithGoogle(payload, response);
 	}
 
 	@Get("me")
