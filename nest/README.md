@@ -25,3 +25,5 @@
 - npm i nodemailer-mailgun-transport
 
 - npm i @nestjs/axios axios
+
+- npm i -D @boldrtechsolutions/types
