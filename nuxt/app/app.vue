@@ -72,4 +72,8 @@
 	watch(isOneTapReady, (isReady) => {
 		if (isReady && !isLoggedIn.value && !user.value) promptGoogleSignIn();
 	});
+
+	watch(isLoggedIn, (loggedIn) => {
+		if (!loggedIn) user.value = null;
+	});
 </script>
