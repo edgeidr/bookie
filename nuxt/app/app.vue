@@ -70,6 +70,6 @@
 	if (isLoggedIn.value && !user.value) getCurrentUser();
 
 	watch(isOneTapReady, (isReady) => {
-		if (isReady && isLoggedIn.value && !user.value) promptGoogleSignIn();
+		if (isReady && !isLoggedIn.value && !user.value) promptGoogleSignIn();
 	});
 </script>
