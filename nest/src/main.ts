@@ -10,7 +10,8 @@ async function bootstrap() {
 	const configService = app.get(ConfigService);
 	const host = configService.get<string>("API_HOST", "0.0.0.0");
 	const port = configService.get<number>("API_PORT", 3011);
-	const corsAllowedOrigin = configService.get<string>("CORS_ALLOWED_ORIGIN");
+	const corsAllowedOriginRaw = configService.get<string>("CORS_ALLOWED_ORIGIN", "");
+	const corsAllowedOrigin = corsAllowedOriginRaw.split(",").map((origin) => origin.trim());
 
 	app.use(cookieParser());
 	app.enableCors({
