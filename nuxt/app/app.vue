@@ -67,7 +67,7 @@
 		onError: () => console.error("Error with One Tap Login"),
 	});
 
-	if (!isLoggedIn.value) getCurrentUser();
+	if (isLoggedIn.value && !user.value) getCurrentUser();
 
 	watch(isOneTapReady, (isReady) => {
 		if (isReady && !user.value) promptGoogleSignIn();
