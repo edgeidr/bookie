@@ -22,7 +22,7 @@ const MyPreset = definePreset(Lara, <Preset>{
 	components: {
 		avatar: {
 			root: {
-				background: "{surface-300}",
+				background: "{surface-200}",
 			},
 		},
 	},
