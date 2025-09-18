@@ -1,9 +1,9 @@
 <template>
-	<header :class="['fixed inset-x-0 duration-200', { 'bg-surface-0 shadow': !isAtTop }]">
+	<header class="bg-surface-0 fixed inset-x-0 shadow duration-200">
 		<div class="container mx-auto">
-			<nav :class="['flex items-center justify-between gap-8 duration-200', isAtTop ? 'py-8' : 'py-4']">
+			<nav class="flex items-center justify-between gap-8 py-4 duration-200">
 				<NuxtLink :to="{ name: 'index' }">
-					<img src="~/assets/icons/brand-logo.svg" class="h-8" />
+					<img src="~/assets/icons/brand-logo.svg" class="h-5" />
 				</NuxtLink>
 
 				<ul class="flex items-center gap-8">
@@ -39,10 +39,9 @@
 
 <script setup lang="ts">
 	import { NuxtLink } from "#components";
-	import { StorageSerializers, useWindowScroll } from "@vueuse/core";
+	import { StorageSerializers } from "@vueuse/core";
 
 	const { t } = useI18n();
-	const { y } = useWindowScroll();
 	const route = useRoute();
 	const profileMenu = ref();
 	const user = useLocalStorage<User>("user", null, { serializer: StorageSerializers.object });
@@ -84,6 +83,5 @@
 		},
 	]);
 
-	const isAtTop = computed(() => y.value <= 50);
 	const userInitials = computed(() => user.value.email.charAt(0).toUpperCase());
 </script>
