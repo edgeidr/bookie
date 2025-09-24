@@ -27,8 +27,6 @@
 
 			const { user: userData } = response._data as { user: User };
 			user.value = userData;
-
-			if (route.meta.guestOnly) navigateTo({ name: "index" });
 		},
 	});
 
@@ -42,8 +40,6 @@
 
 			const { user: userData } = response._data as { user: User };
 			user.value = userData;
-
-			if (route.meta.guestOnly) navigateTo({ name: "index" });
 		},
 	});
 
@@ -87,6 +83,7 @@
 	watch(user, (userData) => {
 		if (userData) {
 			cancelOneTap();
+			if (route.meta.guestOnly) navigateTo({ name: "index" });
 		} else {
 			navigateTo({ name: "login" });
 		}

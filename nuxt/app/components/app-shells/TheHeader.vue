@@ -56,7 +56,6 @@
 		method: "POST",
 		onResponse: () => {
 			user.value = null;
-			navigateTo({ name: "login" });
 		},
 	});
 	const profileMenuItems = ref([

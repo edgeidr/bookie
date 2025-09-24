@@ -117,7 +117,6 @@
 
 			const { user: userData } = response._data as { user: User };
 			user.value = userData;
-			navigateTo({ name: "index" });
 		},
 		onResponseError: ({ response }) => {
 			const { message } = response._data;
@@ -138,7 +137,6 @@
 
 			const { user: userData } = response._data as { user: User };
 			user.value = userData;
-			navigateTo({ name: "index" });
 		},
 	});
 
