@@ -40,14 +40,12 @@ export class AuthController {
 	}
 
 	@Get("me")
-	async getCurrentUser(@Req() request: Request): Promise<{ user: User }> {
+	async getCurrentUser(@Req() request: Request): Promise<User> {
 		const sessionId = request.cookies?.["sessionId"] as string | null;
 
 		if (!sessionId) throw new UnauthorizedException();
 
-		const user = await this.authService.getCurrentUser(request);
-
-		return { user };
+		return await this.authService.getCurrentUser(request);
 	}
 
 	@HttpCode(HttpStatus.NO_CONTENT)
