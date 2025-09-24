@@ -67,6 +67,12 @@
 		onError: () => console.error("Error with One Tap Login"),
 	});
 
+	const cancelOneTap = () => {
+		if (window.google?.accounts.id) {
+			window.google.accounts.id.cancel();
+		}
+	};
+
 	if (isLoggedIn.value && !user.value) getCurrentUser();
 
 	watch(isOneTapReady, (isReady) => {
@@ -74,10 +80,15 @@
 	});
 
 	watch(isLoggedIn, (loggedIn) => {
-		if (!loggedIn) user.value = null;
+		if (loggedIn) getCurrentUser();
+		else user.value = null;
 	});
 
-	watch(user, () => {
-		if (!user.value) navigateTo({ name: "login" });
+	watch(user, (userData) => {
+		if (userData) {
+			cancelOneTap();
+		} else {
+			navigateTo({ name: "login" });
+		}
 	});
 </script>
