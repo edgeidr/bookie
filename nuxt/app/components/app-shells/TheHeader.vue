@@ -56,8 +56,7 @@
 		method: "POST",
 		onResponse: () => {
 			user.value = null;
-
-			if (route.meta.authOnly) navigateTo({ name: "index" });
+			navigateTo({ name: "login" });
 		},
 	});
 	const profileMenuItems = ref([
@@ -83,5 +82,5 @@
 		},
 	]);
 
-	const userInitials = computed(() => user.value.email.charAt(0).toUpperCase());
+	const userInitials = computed(() => user.value?.email?.charAt(0).toUpperCase() || "A");
 </script>

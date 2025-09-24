@@ -76,4 +76,8 @@
 	watch(isLoggedIn, (loggedIn) => {
 		if (!loggedIn) user.value = null;
 	});
+
+	watch(user, () => {
+		if (!user.value) navigateTo({ name: "login" });
+	});
 </script>
