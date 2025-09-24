@@ -49,4 +49,12 @@ export class AuthController {
 
 		return { user };
 	}
+
+	@HttpCode(HttpStatus.NO_CONTENT)
+	@Post("sign-out")
+	async signOut(@Req() request: Request, @Res({ passthrough: true }) response: Response): Promise<void> {
+		const sessionId = request.cookies?.["sessionId"] as string | null;
+
+		if (sessionId) await this.authService.signOut(request, response);
+	}
 }

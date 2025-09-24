@@ -19,4 +19,8 @@ export class AuthService {
 	async getCurrentUser(request: Request) {
 		return this.boldrtechApiService.getCurrentUser(request);
 	}
+
+	async signOut(request: Request, response: Response) {
+		return this.boldrtechApiService.signOut(request, response);
+	}
 }

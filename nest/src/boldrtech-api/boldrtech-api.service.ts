@@ -46,4 +46,15 @@ export class BoldrtechApiService {
 			}),
 		);
 	}
+
+	async signOut(request: Request, response: Response): Promise<void> {
+		return this.request(
+			this.httpService.axiosRef.post("/auth/sign-out", null, {
+				headers: {
+					cookie: request.headers["cookie"],
+				},
+			}),
+			response,
+		);
+	}
 }
